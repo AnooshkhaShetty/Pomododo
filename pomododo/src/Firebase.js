@@ -20,16 +20,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-export const auth = getAuth(app)
+const auth = getAuth(app)
 
 const provider = new GoogleAuthProvider();
 
-export const signInWithGoogle = () => {
+const signInWithGoogle = () => {
   signInWithPopup(auth, provider).then((result) => {
     const name = result.user.displayName
     const photoURL = result.user.photoURL
 
     localStorage.setItem("name", name)
     localStorage.setItem("photoURL", photoURL)
+
   })
+}
+
+export{
+  signInWithGoogle,
+  auth
 }
