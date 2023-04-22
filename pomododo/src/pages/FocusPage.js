@@ -37,14 +37,33 @@ function FocusPage() {
   const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
 
+  const circleProgress = {
+    backgroundColor: '#1f1f1f',
+    borderRadius: '50%',
+    width: '200px',
+    height: '200px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative'
+  };
+
+  const circleText = {
+    fontSize: '4em',
+    fontWeight: 'bold',
+    color: '#fff'
+  };
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: '#a7c957', color: '#fff' }}>
-      <h1 style={{ marginBottom: 0 }}>{mode === 'study' ? 'Study' : 'Break'}</h1>
-      <p style={{ fontSize: '8em', margin: 0 }}>
-        {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
-      </p>
-      <div style={{ marginTop: '2em' }}>
-        <button onClick={toggleTimer} style={{ padding: '0.5em 2em', borderRadius: '5px', border: 'none', backgroundColor: '#fff', color: '#a7c957', fontWeight: 'bold', cursor: 'pointer' }}>{isRunning ? 'Pause' : 'Start'}</button>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: mode === 'study' ? '#e84c3d' : '#a7c957', color: '#fff' }}>
+      <h1 style={{ marginBottom: 10 }}>{mode === 'study' ? 'Study' : 'Break'}</h1>
+      <div style={circleProgress}>
+        <p style={circleText}>
+          {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
+        </p>
+      </div>
+      <div style={{ marginTop: '2em'}}>
+        <button onClick={toggleTimer} style={{ padding: '0.5em 2em', borderRadius: '5px', border: 'none', backgroundColor: '#fff', color: '#1f1f1f', fontWeight: 'bold', cursor: 'pointer' }}>{isRunning ? 'Pause' : 'Start'}</button>
       </div>
     </div>
   );  
