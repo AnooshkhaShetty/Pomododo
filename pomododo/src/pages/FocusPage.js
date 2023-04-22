@@ -14,6 +14,7 @@ function FocusPage() {
       interval = setInterval(() => {
         setTimeRemaining((prevTime) => prevTime - 1);
       }, 1000);
+      document.title = (Math.floor(timeRemaining / 60))+":"+(timeRemaining % 60);
     }
     return () => clearInterval(interval);
   }, [timeRemaining]);

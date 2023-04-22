@@ -18,7 +18,6 @@
 import * as React from 'react';
 import Router from "./pages/Routes";
 
-
 const App = () => {
   return (
       <div className="FocusPage">
