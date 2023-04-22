@@ -16,6 +16,6 @@ const firebaseConfig = {
   measurementId: "G-30HYP50JEB"
 };
 
-// Initialize Firebase
+// Initialize Firebas
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
