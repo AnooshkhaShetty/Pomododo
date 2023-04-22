@@ -40,7 +40,7 @@ function Timer() {
       interval = setInterval(() => {
         setTimeRemaining((prevTime) => prevTime - 1);
       }, 1000);
-      document.title = (Math.floor(timeRemaining / 60))+":"+(timeRemaining % 60);
+      document.title = (Math.floor(timeRemaining / 60).toString().padStart(2, '0'))+":"+(timeRemaining % 60).toString().padStart(2, '0');
     }
     return () => clearInterval(interval);
   }, [timeRemaining]);
