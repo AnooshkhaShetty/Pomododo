@@ -8,8 +8,8 @@ const Router = () => {
 
   return (
     <Routes>
-      <Route exact path="/timetofocus" element={<FocusPage />} />
-      <Route exact path="/selectmethod" element={<HomePage />} />
+      <Route exact path="/FocusPage" element={<FocusPage />} />
+      <Route exact path="/HomePage" element={<HomePage />} />
     </Routes>
   );
 }

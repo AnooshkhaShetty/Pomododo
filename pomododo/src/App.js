@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Router from "./pages/Routes";
+import Router from "./Pages/Routes";
 
 
 const App = () => {
