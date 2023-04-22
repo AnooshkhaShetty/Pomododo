@@ -26,12 +26,11 @@ const provider = new GoogleAuthProvider();
 
 const signInWithGoogle = () => {
   signInWithPopup(auth, provider).then((result) => {
-    const name = result.user.displayName
-    const photoURL = result.user.photoURL
+    const name = result.user.displayName;
+    const photoURL = result.user.photoURL;
 
-    localStorage.setItem("name", name)
-    localStorage.setItem("photoURL", photoURL)
-
+    localStorage.setItem("name", name);
+    localStorage.setItem("photoURL", photoURL);
   })
 }
 
