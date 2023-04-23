@@ -42,7 +42,7 @@ function FocusPage() {
   
     head.appendChild(newLink);
   }, [mode, timeRemaining]);
-  
+
   
 
   const minutes = Math.floor(timeRemaining / 60);
