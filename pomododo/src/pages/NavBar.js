@@ -14,9 +14,12 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Router from './Routes';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
+import { LogoutButton } from '../Firebase';
 
-const pages = ['Home', 'Social'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['Leaderboard'];
+const settings = [<LogoutButton />];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -26,14 +29,22 @@ function ResponsiveAppBar() {
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-    // navigate("/timetofocus");
   };
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
+  const ProfileImage = styled('img')({
+    borderRadius: '25%',
+    width: '50px',
+    height: '50px',
+    objectFit: 'cover',
+  });
+
   const handleCloseNavMenu = () => {
+    navigate("/Leaderboard");
+    // navigate(anchorElNav);
     setAnchorElNav(null);
   };
 
@@ -49,7 +60,7 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/selectmethod"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -99,7 +110,6 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -116,7 +126,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            POMODODO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -133,7 +143,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <ProfileImage src={localStorage.getItem("photoURL")} />
               </IconButton>
             </Tooltip>
             <Menu
