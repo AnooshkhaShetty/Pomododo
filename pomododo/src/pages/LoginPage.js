@@ -17,7 +17,7 @@ const LoginCard = styled('div')({
   backgroundColor: 'white',
   borderRadius: '10px',
   width: '300px',
-  height: '50px',
+  height: '300px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -28,7 +28,11 @@ const LoginCard = styled('div')({
 const WelcomeText = styled('h1')({
   textAlign: 'center',
   fontWeight: 'bold',
-  fontSize: '30px',
+  fontSize: '50px',
+  fontFamily: 'monospace',
+  fontWeight: 700,
+  letterSpacing: '.3rem',
+  color: 'white',
 });
 
 const ProfileImage = styled('img')({
