@@ -51,7 +51,6 @@ function Login() {
       </LoginCard>
     </LoginContainer>
   );
->>>>>>> 442eaa591a899d226c0e853df8a5ee6a2c478c74
 }
 
 export default Login;

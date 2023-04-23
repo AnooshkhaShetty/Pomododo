@@ -2,6 +2,7 @@ import { addDoc } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { auth, db, userRef } from '../Firebase'
+import ResponsiveAppBar from './NavBar';
 
 async function addTime (amount){
   let user = auth.currentUser;
@@ -15,7 +16,6 @@ async function addTime (amount){
   }
   userRef.doc(user).set(data)
 }
-import ResponsiveAppBar from './NavBar';
 
 function FocusPage() {
   const { state: { studyTime, breakTime} = {} } = useLocation();
