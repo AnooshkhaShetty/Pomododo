@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import { getFirestore, collection, doc, getDoc, setDoc} from "firebase/firestore";
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -96,7 +98,7 @@ function LogoutButton() {
   };
 
   return (
-    <button onClick={handleLogout}>Logout</button>
+    <Button variant="contained" onClick={handleLogout} color="success">Logout</Button>
   );
 }
 

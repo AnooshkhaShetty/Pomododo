@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { LogoutButton } from '../Firebase';
 
-const pages = ['Leaderboard'];
+const pages = ['Dashboard'];
 const settings = [<LogoutButton />];
 
 function ResponsiveAppBar() {
@@ -141,7 +141,7 @@ function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <ProfileImage src={localStorage.getItem("photoURL")} />
               </IconButton>

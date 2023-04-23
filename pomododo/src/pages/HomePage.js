@@ -156,7 +156,7 @@ export default function ActionAreaCard() {
               </Typography>
             </CardContent>
             <CardActions sx={{ justifyContent: 'center' }}>
-              <Button variant="contained" component={Link} to="/timetofocus" state={{ studyTime: customStudy, breakTime: customBreak }}>Begin</Button>
+              <Button variant="contained" component={Link} to="/timetofocus" color="success" state={{ studyTime: customStudy, breakTime: customBreak }}>Begin</Button>
             </CardActions>
           </Card>
 
