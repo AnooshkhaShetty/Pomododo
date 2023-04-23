@@ -11,7 +11,7 @@ Instructions:
 1. In Terminal, enter:
 git clone https://github.com/AnooshkhaShetty/Pomododo.git
 
-2. Then, cd into the "ducks" repository
+2. enter: cd ducks
 
 3. enter: npm install
 
