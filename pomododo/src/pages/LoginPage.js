@@ -57,7 +57,7 @@ function Login() {
       <WelcomeText>Pomododo</WelcomeText>
       <LoginCard>
         <div>
-            <h2>{localStorage.getItem("name") ? "Welcome back," : ""}</h2>
+            <h2 style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>{localStorage.getItem("name") ? "Time to focus," : ""}</h2>
           <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>{localStorage.getItem("name")}</h1>
           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
           <ProfileImage src={localStorage.getItem("photoURL")} />
