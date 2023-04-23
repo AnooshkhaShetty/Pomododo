@@ -23,16 +23,24 @@ function FocusPage() {
   }, [isRunning, timeRemaining, mode]);
 
   useEffect(() => {
-    setMode('study');
-    setTimeRemaining(60);
-    setIsRunning(false);
-  }, []);
-
-  useEffect(() => {
     document.title = `${mode === 'study' ? 'Study' : 'Break'} - ${Math.floor(timeRemaining / 60)
       .toString()
       .padStart(2, '0')}:${(timeRemaining % 60).toString().padStart(2, '0')}`;
+  
+    const head = document.head || document.getElementsByTagName('head')[0];
+    const existingLink = head.querySelector('link[rel="shortcut icon"]');
+    const newLink = document.createElement('link');
+    newLink.rel = 'shortcut icon';
+    newLink.href = mode === 'study' ? '/red_box.ico' : 'green_box.ico';
+  
+    if (existingLink) {
+      head.removeChild(existingLink);
+    }
+  
+    head.appendChild(newLink);
   }, [mode, timeRemaining]);
+  
+  
 
   const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
