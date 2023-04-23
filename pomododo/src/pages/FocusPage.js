@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function FocusPage() {
-  const [timeRemaining, setTimeRemaining] = useState(60); // 25 minutes
+  const { state: { studyTime, breakTime} = {} } = useLocation();
+
+  const [timeRemaining, setTimeRemaining] = useState(studyTime); // 25 minutes
   const [isRunning, setIsRunning] = useState(false);
   const [mode, setMode] = useState('study');
 
   const toggleTimer = () => {
     setIsRunning(!isRunning);
   };
-
-  const { state: { studyTime, breakTime} = {} } = useLocation();
 
   useEffect(() => {
     let interval;
@@ -26,15 +26,21 @@ function FocusPage() {
   }, [isRunning, timeRemaining, mode]);
 
   useEffect(() => {
-    setMode('study');
-    setTimeRemaining(studyTime*60);
-    setIsRunning(false);
-  }, []);
-
-  useEffect(() => {
     document.title = `${mode === 'study' ? 'Study' : 'Break'} - ${Math.floor(timeRemaining / 60)
       .toString()
       .padStart(2, '0')}:${(timeRemaining % 60).toString().padStart(2, '0')}`;
+  
+    const head = document.head || document.getElementsByTagName('head')[0];
+    const existingLink = head.querySelector('link[rel="shortcut icon"]');
+    const newLink = document.createElement('link');
+    newLink.rel = 'shortcut icon';
+    newLink.href = mode === 'study' ? '/red_box.ico' : 'green_box.ico';
+  
+    if (existingLink) {
+      head.removeChild(existingLink);
+    }
+  
+    head.appendChild(newLink);
   }, [mode, timeRemaining]);
 
   const minutes = Math.floor(timeRemaining / 60);
@@ -43,8 +49,8 @@ function FocusPage() {
   const circleProgress = {
     backgroundColor: '#1f1f1f',
     borderRadius: '50%',
-    width: '200px',
-    height: '200px',
+    width: '400px', // increase the width to 300px
+    height: '400px', // increase the height to 300px
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -52,24 +58,24 @@ function FocusPage() {
   };
 
   const circleText = {
-    fontSize: '4em',
+    fontSize: '8em', // Increase font size to 8em
     fontWeight: 'bold',
     color: '#fff'
   };
-
+  
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: mode === 'study' ? '#e84c3d' : '#a7c957', color: '#fff' }}>
-      <h1 style={{ marginBottom: 10 }}>{mode === 'study' ? 'Study' : 'Break'}</h1>
+      <h1 style={{ marginBottom: 20, fontSize: '3em' }}>{mode === 'study' ? 'Study' : 'Break'}</h1> {/* increase the font size to 3em */}
       <div style={circleProgress}>
         <p style={circleText}>
           {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
         </p>
       </div>
       <div style={{ marginTop: '2em'}}>
-        <button onClick={toggleTimer} style={{ padding: '0.5em 2em', borderRadius: '5px', border: 'none', backgroundColor: '#fff', color: '#1f1f1f', fontWeight: 'bold', cursor: 'pointer' }}>{isRunning ? 'Pause' : 'Start'}</button>
+        <button onClick={toggleTimer} style={{ padding: '1em 3em', borderRadius: '5px', border: 'none', backgroundColor: '#fff', color: '#1f1f1f', fontWeight: 'bold', fontSize: '1.2em', cursor: 'pointer' }}>{isRunning ? 'Pause' : 'Start'}</button> {/* increase the padding to 1em 3em and the font size to 1.2em */}
       </div>
     </div>
-  );  
+  );
 }
 
 export default FocusPage;

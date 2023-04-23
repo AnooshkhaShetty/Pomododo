@@ -35,6 +35,7 @@ export default function ActionAreaCard() {
   }
   
   return (
+    <div style={{ backgroundColor:'#a7c957', height: '100vh'}}>
     <div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#a7c957', color: '#fff' }}>
         <h1 style={{ backgroundColor: '#a7c957', padding: '10px', margin: 0 }}>
@@ -164,6 +165,7 @@ export default function ActionAreaCard() {
     </Card>
 
 
+    </div>
     </div>
     </div>
   );
