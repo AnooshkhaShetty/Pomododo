@@ -66,7 +66,7 @@ function FocusPage() {
   
   return (
     <><ResponsiveAppBar></ResponsiveAppBar><div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: mode === 'study' ? '#e84c3d' : '#a7c957', color: '#fff' }}>
-      <h1 style={{ marginBottom: 20, fontSize: '3em' }}>{mode === 'study' ? 'Study' : 'Break'}</h1> {/* increase the font size to 3em */}
+      <h1 style={{ marginTop: -80, marginBottom: 20, fontSize: '3em' }}>{mode === 'study' ? 'Study' : 'Break'}</h1> {/* increase the font size to 3em */}
       <div style={circleProgress}>
         <p style={circleText}>
           {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
