@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function FocusPage() {
   const [timeRemaining, setTimeRemaining] = useState(60); // 25 minutes
@@ -9,6 +10,8 @@ function FocusPage() {
     setIsRunning(!isRunning);
   };
 
+  const { state: { studyTime, breakTime} = {} } = useLocation();
+
   useEffect(() => {
     let interval;
     if (isRunning && timeRemaining > 0) {
@@ -17,14 +20,14 @@ function FocusPage() {
       }, 1000);
     } else if (isRunning && timeRemaining === 0) {
       setMode((prevMode) => (prevMode === 'study' ? 'break' : 'study'));
-      setTimeRemaining(mode === 'study' ? 30 : 60);
+      setTimeRemaining(mode === 'study' ? (breakTime*60) : (studyTime*60));
     }
     return () => clearInterval(interval);
   }, [isRunning, timeRemaining, mode]);
 
   useEffect(() => {
     setMode('study');
-    setTimeRemaining(60);
+    setTimeRemaining(studyTime*60);
     setIsRunning(false);
   }, []);
 

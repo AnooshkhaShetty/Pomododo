@@ -4,6 +4,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const gridStyles = {
   display: 'grid',
@@ -18,15 +21,17 @@ const gridStyles = {
 export default function ActionAreaCard() {
   return (
     <div>
-    <Typography variant="h4" align="center" gutterBottom>
-    Choose your method:
-  </Typography>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#a7c957', color: '#fff' }}>
+        <h1 style={{ backgroundColor: '#a7c957', padding: '10px', margin: 0 }}>
+          Choose your method:
+        </h1>
+      </div>
     <div style={gridStyles}>
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
+        <CardActionArea component={Link} to="/timetofocus" state={{ studyTime: 25, breakTime:5  }}>
           <CardMedia
             component="img"
-            height="200"
+            height="150"
             image={require ('../images/tomato.jpg')}
             alt="tomato"
           />
@@ -42,10 +47,10 @@ export default function ActionAreaCard() {
       </Card>
 
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
+        <CardActionArea component={Link} to="/timetofocus" state={{ studyTime: 30, breakTime:30  }}>
           <CardMedia
             component="img"
-            height="200"
+            height="150"
             image={require ('../images/balance.jpeg')}
             alt="balance"
           />
@@ -61,10 +66,10 @@ export default function ActionAreaCard() {
       </Card>
 
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
+        <CardActionArea component={Link} to="/timetofocus" state={{ studyTime: 55, breakTime:5 }}>
           <CardMedia
             component="img"
-            height="200"
+            height="150"
             image={require ('../images/coffee.jpeg')}
             alt="coffeebeans"
           />
@@ -80,41 +85,52 @@ export default function ActionAreaCard() {
       </Card>
 
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
+        <CardActionArea component={Link} to="/timetofocus" state={{ studyTime: 45, breakTime:15 }}>
           <CardMedia
             component="img"
-            height="200"
+            height="150"
             image={require ('../images/studying.jpg')}
-            alt="coffeebeans"
+            alt="study"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               45/15 Split
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              You've got to get this done. Study continously without breaks.
+              The classroom setup. 45 minutes of study, and 15 minutes of break.
             </Typography>
           </CardContent>
         </CardActionArea>
       </Card>
+
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
+        <CardActionArea component={Link} to="/timetofocus" state={{ studyTime: 99, breakTime:0 }}>
           <CardMedia
             component="img"
-            height="200"
-            image={require ('../images/choose.jpeg')}
-            alt="coffeebeans"
+            height="150"
+            image={require ('../images/workbythebeach.jpg')}
+            alt="bythebeach"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Custom
+              No Breaks!
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Choose your study and break intervals.
+              Let's get that project done. Keep working without breaks until you finish.
             </Typography>
           </CardContent>
         </CardActionArea>
       </Card>
+
+      <Card sx={{ maxWidth: 345 }}>
+        <CardActionArea>
+          <CardContent sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: 230}}>
+            <AddCircleIcon fontSize="large"/>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+
+
     </div>
     </div>
   );
