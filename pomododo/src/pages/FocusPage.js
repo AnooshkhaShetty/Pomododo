@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function FocusPage() {
-  const [timeRemaining, setTimeRemaining] = useState(60); // 25 minutes
+  const { state: { studyTime, breakTime} = {} } = useLocation();
+
+  const [timeRemaining, setTimeRemaining] = useState(studyTime); // 25 minutes
   const [isRunning, setIsRunning] = useState(false);
   const [mode, setMode] = useState('study');
 
   const toggleTimer = () => {
     setIsRunning(!isRunning);
   };
-
-  const { state: { studyTime, breakTime} = {} } = useLocation();
 
   useEffect(() => {
     let interval;
