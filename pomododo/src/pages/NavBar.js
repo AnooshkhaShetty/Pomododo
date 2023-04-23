@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 import { LogoutButton } from '../Firebase';
 
 const pages = ['Leaderboard'];
-const settings = ['Logout'];
+const settings = [<LogoutButton />];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
