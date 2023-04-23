@@ -14,9 +14,10 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Router from './Routes';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const pages = ['Home', 'Social'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['Leaderboard'];
+const settings = ['Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -26,7 +27,6 @@ function ResponsiveAppBar() {
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-    // navigate("/timetofocus");
   };
 
   const handleOpenUserMenu = (event) => {
@@ -34,6 +34,8 @@ function ResponsiveAppBar() {
   };
 
   const handleCloseNavMenu = () => {
+    navigate("/Leaderboard");
+    // navigate(anchorElNav);
     setAnchorElNav(null);
   };
 
@@ -49,7 +51,7 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/selectmethod"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -99,7 +101,6 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -116,7 +117,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            POMODODO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (

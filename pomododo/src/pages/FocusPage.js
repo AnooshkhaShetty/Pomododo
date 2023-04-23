@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import ResponsiveAppBar from './NavBar';
 
 function FocusPage() {
   const { state: { studyTime, breakTime} = {} } = useLocation();
@@ -64,17 +65,17 @@ function FocusPage() {
   };
   
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: mode === 'study' ? '#e84c3d' : '#a7c957', color: '#fff' }}>
+    <><ResponsiveAppBar></ResponsiveAppBar><div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: mode === 'study' ? '#e84c3d' : '#a7c957', color: '#fff' }}>
       <h1 style={{ marginBottom: 20, fontSize: '3em' }}>{mode === 'study' ? 'Study' : 'Break'}</h1> {/* increase the font size to 3em */}
       <div style={circleProgress}>
         <p style={circleText}>
           {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
         </p>
       </div>
-      <div style={{ marginTop: '2em'}}>
+      <div style={{ marginTop: '2em' }}>
         <button onClick={toggleTimer} style={{ padding: '1em 3em', borderRadius: '5px', border: 'none', backgroundColor: '#fff', color: '#1f1f1f', fontWeight: 'bold', fontSize: '1.2em', cursor: 'pointer' }}>{isRunning ? 'Pause' : 'Start'}</button> {/* increase the padding to 1em 3em and the font size to 1.2em */}
       </div>
-    </div>
+    </div></>
   );
 }
 
