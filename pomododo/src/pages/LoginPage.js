@@ -1,30 +1,3 @@
-// import { auth, signInWithGoogle } from "../Firebase"
-// import { useNavigate } from 'react-router-dom'
-// import { useAuthState } from 'react-firebase-hooks/auth';
-
-// function Login(){
-
-//     const [user, loading, error] = useAuthState(auth);
-//     const navigate = useNavigate();
-    
-//     //If the user exists, navigate to the homepage
-//     if (user) {
-//         navigate("/selectmethod");
-//         return null;
-//     }
-
-//     return (
-//         <div className="Login">
-//             <h1> Welcome to Pomododo</h1>
-//             <button onClick={() =>{signInWithGoogle()}}> Login </button>
-//             <h1>{localStorage.getItem("name")}</h1>
-//             <img src = {localStorage.getItem("photoURL")} />
-//         </div>
-//     );
-// }
-
-// export default Login;
-
 import { auth, signInWithGoogle } from "../Firebase"
 import { useNavigate } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -33,7 +6,7 @@ import { styled } from '@mui/material/styles';
 
 const LoginContainer = styled('div')({
   height: '100vh',
-  backgroundColor: '#a7c957',
+  backgroundColor: '#6a994e',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -55,7 +28,11 @@ const LoginCard = styled('div')({
 const WelcomeText = styled('h1')({
   textAlign: 'center',
   fontWeight: 'bold',
-  fontSize: '30px',
+  fontSize: '50px',
+  fontFamily: 'monospace',
+    fontWeight: 700,
+    letterSpacing: '.3rem',
+    color: 'white',
 });
 
 const ProfileImage = styled('img')({
@@ -77,15 +54,18 @@ function Login() {
 
   return (
     <LoginContainer>
-      <WelcomeText>Welcome to Pomododo</WelcomeText>
+      <WelcomeText>Pomododo</WelcomeText>
       <LoginCard>
-        <Button variant="contained" onClick={() => signInWithGoogle()}>
+        <div>
+            <h2>{localStorage.getItem("name") ? "Welcome back," : ""}</h2>
+          <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>{localStorage.getItem("name")}</h1>
+          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+          <ProfileImage src={localStorage.getItem("photoURL")} />
+          </div>
+        </div>
+        <Button variant="contained" onClick={() => signInWithGoogle()} color="success">
           Login
         </Button>
-        <div>
-          <WelcomeText>{localStorage.getItem("name")}</WelcomeText>
-          <ProfileImage src={localStorage.getItem("photoURL")} />
-        </div>
       </LoginCard>
     </LoginContainer>
   );
