@@ -7,8 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
-import { useState } from 'react'
-import firebase from "firebase/app"
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,34 +27,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app)
+//const db = firestore();
 
 const provider = new GoogleAuthProvider();
 
-const signInWithGoogle = () => {
+function signInWithGoogle () {
   signInWithPopup(auth, provider).then((result) => {
-    const name = result.user.displayName;
-    const photoURL = result.user.photoURL;
-    console.log(result)
 
-    localStorage.setItem("name", name);
-    localStorage.setItem("photoURL", photoURL);
   })
 }
 
-/*
-const UserStore = () =>{
-  const [name, Setname] = useState("");
-  const [photo, Setphoto] = useState("");
-  const [userID, SetID] = useState("");
 
-  db.collection("userInfo").add(
-    {
-      Name: name,
-      Photo: photo,
-      UserID: userID
-    }
-  ).then
-}*/
 
 function LogoutButton() {
   const navigate = useNavigate();

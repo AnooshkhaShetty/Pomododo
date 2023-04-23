@@ -11,6 +11,7 @@ import CardActions from '@mui/material/CardActions';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {useState} from 'react';
 import { LogoutButton } from '../Firebase';
+import Profile from "./Profile"
 
 
 const gridStyles = {
@@ -36,6 +37,7 @@ export default function ActionAreaCard() {
   
   return (
     <div style={{ backgroundColor:'#a7c957', height: '100vh'}}>
+      <Profile />
     <div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#a7c957', color: '#fff' }}>
         <h1 style={{ backgroundColor: '#a7c957', padding: '10px', margin: 0 }}>

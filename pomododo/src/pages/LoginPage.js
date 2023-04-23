@@ -1,6 +1,8 @@
 import { auth, signInWithGoogle } from "../Firebase"
 import { useNavigate } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth';
+import Button from '@mui/material/Button';
+
 
 function Login(){
 
@@ -16,9 +18,7 @@ function Login(){
     return (
         <div className="Login">
             <h1> Welcome to Pomododo</h1>
-            <button onClick={() =>{signInWithGoogle()}}> Login </button>
-            <h1>{localStorage.getItem("name")}</h1>
-            <img src = {localStorage.getItem("photoURL")} />
+            <Button onClick={() =>{signInWithGoogle()}}> Login </Button>
         </div>
     );
 }
