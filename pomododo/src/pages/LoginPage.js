@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 
 const LoginContainer = styled('div')({
   height: '100vh',
-  backgroundColor: '#a7c957',
+  backgroundColor: '#6a994e',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -31,6 +31,13 @@ const WelcomeText = styled('h1')({
   fontSize: '30px',
 });
 
+const ProfileImage = styled('img')({
+  borderRadius: '50%',
+  width: '100px',
+  height: '100px',
+  objectFit: 'cover',
+});
+
 function Login() {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
@@ -43,9 +50,16 @@ function Login() {
 
   return (
     <LoginContainer>
-      <WelcomeText>Welcome to Pomododo</WelcomeText>
+      <WelcomeText>Pomododo</WelcomeText>
       <LoginCard>
-        <Button variant="contained" onClick={() => signInWithGoogle()}>
+        <div>
+            <h2>{localStorage.getItem("name") ? "Welcome back," : ""}</h2>
+          <h1 style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>{localStorage.getItem("name")}</h1>
+          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+          <ProfileImage src={localStorage.getItem("photoURL")} />
+          </div>
+        </div>
+        <Button variant="contained" onClick={() => signInWithGoogle()} color="success">
           Login
         </Button>
       </LoginCard>
