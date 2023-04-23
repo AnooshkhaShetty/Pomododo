@@ -11,6 +11,7 @@ import CardActions from '@mui/material/CardActions';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {useState} from 'react';
 import ResponsiveAppBar from './NavBar';
+import Profile from "./Profile"
 
 
 const gridStyles = {

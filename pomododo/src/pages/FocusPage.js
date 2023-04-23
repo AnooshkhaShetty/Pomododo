@@ -1,5 +1,7 @@
+import { addDoc } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { addTime } from '../Firebase'
 import ResponsiveAppBar from './NavBar';
 
 function FocusPage() {
@@ -20,6 +22,9 @@ function FocusPage() {
         setTimeRemaining((prevTime) => prevTime - 1);
       }, 1000);
     } else if (isRunning && timeRemaining === 0) {
+      if (mode === 'study'){
+        addTime(parseFloat(studyTime))
+      }
       setMode((prevMode) => (prevMode === 'study' ? 'break' : 'study'));
       setTimeRemaining(mode === 'study' ? (breakTime*60) : (studyTime*60));
     }

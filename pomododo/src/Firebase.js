@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
+import { getFirestore, collection, doc, getDoc, setDoc} from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,17 +28,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app)
+const db = getFirestore(app);
+const userRef = collection(db, 'Users');
 
 const provider = new GoogleAuthProvider();
 
-const signInWithGoogle = () => {
+function signInWithGoogle () {
   signInWithPopup(auth, provider).then((result) => {
-    const name = result.user.displayName;
-    const photoURL = result.user.photoURL;
-
-    localStorage.setItem("name", name);
-    localStorage.setItem("photoURL", photoURL);
   })
+}
+
+async function addTime (amount){
+  let user = auth.currentUser;
+  var oldTime = parseFloat(0);
+  const docRef = doc(db, "Users", user.uid)
+  const snapshot = await getDoc(docRef)
+  if (snapshot.exists()){
+    oldTime = snapshot.data().totalMinutes;
+  }
+
+  await setDoc((docRef),{
+    userName: user.displayName,
+    totalMinutes: oldTime + amount
+  })
+
 }
 
 function LogoutButton() {
@@ -57,5 +72,8 @@ function LogoutButton() {
 export{
   signInWithGoogle,
   LogoutButton,
-  auth
+  auth,
+  db,
+  userRef,
+  addTime
 }
