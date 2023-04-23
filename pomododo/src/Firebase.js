@@ -1,3 +1,8 @@
+// import FRONTEND packages
+import React, {useState, useEffect} from 'react';
+import ReactDOM from 'react-dom/client';
+import { useNavigate } from 'react-router-dom';
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -52,7 +57,23 @@ const UserStore = () =>{
   ).then
 }*/
 
+function LogoutButton() {
+  const navigate = useNavigate();
+
+  // Function to handle logout and navigation
+  const handleLogout = () => {
+    auth.signOut(); // Sign out the user
+    navigate('/'); // Navigate back to the home screen
+  };
+
+  return (
+    <button onClick={handleLogout}>Logout</button>
+  );
+}
+
+
 export{
   signInWithGoogle,
+  LogoutButton,
   auth
 }

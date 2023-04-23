@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {useState} from 'react';
+import { LogoutButton } from '../Firebase';
 
 
 const gridStyles = {
@@ -39,6 +40,7 @@ export default function ActionAreaCard() {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#a7c957', color: '#fff' }}>
         <h1 style={{ backgroundColor: '#a7c957', padding: '10px', margin: 0 }}>
           Choose your method:
+          <LogoutButton />
         </h1>
       </div>
     <div style={gridStyles}>
