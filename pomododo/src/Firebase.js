@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, collection } from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,13 +28,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app)
-//const db = firestore();
+const db = getFirestore(app);
+const userRef = collection(db, 'Users');
 
 const provider = new GoogleAuthProvider();
 
 function signInWithGoogle () {
   signInWithPopup(auth, provider).then((result) => {
-
   })
 }
 
@@ -57,5 +58,7 @@ function LogoutButton() {
 export{
   signInWithGoogle,
   LogoutButton,
-  auth
+  auth,
+  db,
+  userRef
 }

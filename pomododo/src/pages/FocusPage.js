@@ -1,5 +1,20 @@
+import { addDoc } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { auth, db, userRef } from '../Firebase'
+
+async function addTime (amount){
+  let user = auth.currentUser;
+  const docRef = userRef.doc(user)
+  var oldTime = 0;
+  docRef.get().then((doc) => {
+    oldTime = doc.totalMinutes;
+  })
+  const data = {
+    totalMinutes: oldTime + amount
+  }
+  userRef.doc(user).set(data)
+}
 
 function FocusPage() {
   const { state: { studyTime, breakTime} = {} } = useLocation();
