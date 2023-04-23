@@ -26,15 +26,6 @@ function FocusPage() {
   }, [isRunning, timeRemaining, mode]);
 
   useEffect(() => {
-<<<<<<< HEAD
-=======
-    setMode('study');
-    setTimeRemaining(studyTime*60);
-    setIsRunning(false);
-  }, []);
-
-  useEffect(() => {
->>>>>>> main
     document.title = `${mode === 'study' ? 'Study' : 'Break'} - ${Math.floor(timeRemaining / 60)
       .toString()
       .padStart(2, '0')}:${(timeRemaining % 60).toString().padStart(2, '0')}`;
