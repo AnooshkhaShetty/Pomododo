@@ -15,6 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import Router from './Routes';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
 import { LogoutButton } from '../Firebase';
 
 const pages = ['Leaderboard'];
@@ -33,6 +34,13 @@ function ResponsiveAppBar() {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
+  const ProfileImage = styled('img')({
+    borderRadius: '25%',
+    width: '50px',
+    height: '50px',
+    objectFit: 'cover',
+  });
 
   const handleCloseNavMenu = () => {
     navigate("/Leaderboard");
@@ -135,7 +143,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <ProfileImage src={localStorage.getItem("photoURL")} />
               </IconButton>
             </Tooltip>
             <Menu
