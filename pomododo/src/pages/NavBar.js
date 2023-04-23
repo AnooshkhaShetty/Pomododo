@@ -14,9 +14,10 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Router from './Routes';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { LogoutButton } from '../Firebase';
 
 const pages = ['Home', 'Social'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard', <LogoutButton />];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
