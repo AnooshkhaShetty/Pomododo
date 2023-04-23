@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import FocusPage from "./FocusPage"
 import HomePage from "./HomePage"
 import LoginPage from "./LoginPage"
+import LeaderBoardPage from "./Leaderboard"
 
 const Router = () => {
 
@@ -13,6 +14,8 @@ const Router = () => {
       <Route exact path="/timetofocus" element={<FocusPage />} />
       <Route exact path="/selectmethod" element={<HomePage />} />
       <Route exact path="/login" element={<LoginPage />}/>
+      <Route exact path="/leaderboard" element={<LeaderBoardPage />}/>
+
     </Routes>
   );
 }

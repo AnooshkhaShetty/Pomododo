@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 function FocusPage() {
   const { state: { studyTime, breakTime} = {} } = useLocation();
 
-  const [timeRemaining, setTimeRemaining] = useState(studyTime); // 25 minutes
+  const [timeRemaining, setTimeRemaining] = useState(studyTime*60);
   const [isRunning, setIsRunning] = useState(false);
   const [mode, setMode] = useState('study');
 
