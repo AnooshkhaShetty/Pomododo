@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
-import { getFirestore, collection } from "firebase/firestore";
+import { getFirestore, collection, doc, getDoc, setDoc} from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -38,7 +38,21 @@ function signInWithGoogle () {
   })
 }
 
+async function addTime (amount){
+  let user = auth.currentUser;
+  var oldTime = parseFloat(0);
+  const docRef = doc(db, "Users", user.uid)
+  const snapshot = await getDoc(docRef)
+  if (snapshot.exists()){
+    oldTime = snapshot.data().totalMinutes;
+  }
 
+  await setDoc((docRef),{
+    userName: user.displayName,
+    totalMinutes: oldTime + amount
+  })
+
+}
 
 function LogoutButton() {
   const navigate = useNavigate();
@@ -60,5 +74,6 @@ export{
   LogoutButton,
   auth,
   db,
-  userRef
+  userRef,
+  addTime
 }

@@ -1,21 +1,8 @@
 import { addDoc } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { auth, db, userRef } from '../Firebase'
+import { addTime } from '../Firebase'
 import ResponsiveAppBar from './NavBar';
-
-async function addTime (amount){
-  let user = auth.currentUser;
-  const docRef = userRef.doc(user)
-  var oldTime = 0;
-  docRef.get().then((doc) => {
-    oldTime = doc.totalMinutes;
-  })
-  const data = {
-    totalMinutes: oldTime + amount
-  }
-  userRef.doc(user).set(data)
-}
 
 function FocusPage() {
   const { state: { studyTime, breakTime} = {} } = useLocation();
@@ -35,6 +22,9 @@ function FocusPage() {
         setTimeRemaining((prevTime) => prevTime - 1);
       }, 1000);
     } else if (isRunning && timeRemaining === 0) {
+      if (mode === 'study'){
+        addTime(parseFloat(studyTime))
+      }
       setMode((prevMode) => (prevMode === 'study' ? 'break' : 'study'));
       setTimeRemaining(mode === 'study' ? (breakTime*60) : (studyTime*60));
     }
