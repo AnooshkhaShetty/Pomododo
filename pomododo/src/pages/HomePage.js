@@ -4,9 +4,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import CardActions from '@mui/material/CardActions';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {useState} from 'react';
+
 
 const gridStyles = {
   display: 'grid',
@@ -19,7 +23,18 @@ const gridStyles = {
 };
 
 export default function ActionAreaCard() {
+  const [customStudy, setMessage] = useState('');
+  const [customBreak, setMessage1] = useState('');
+
+  const handleStudyChange = event => {
+    setMessage(event.target.value);
+  }
+  const handleBreakChange = event => {
+    setMessage1(event.target.value);
+  }
+  
   return (
+    <div style={{ backgroundColor:'#a7c957', height: '100vh'}}>
     <div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#a7c957', color: '#fff' }}>
         <h1 style={{ backgroundColor: '#a7c957', padding: '10px', margin: 0 }}>
@@ -122,15 +137,33 @@ export default function ActionAreaCard() {
         </CardActionArea>
       </Card>
 
-      <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
-          <CardContent sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: 230}}>
-            <AddCircleIcon fontSize="large"/>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+    <Card sx={{ maxWidth: 345 }}>
+      <Box
+        component="form"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          '& > :not(style)': { m: 1.3, width: '20ch' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField id="outlined-basic" label="Study interval" variant="standard" onChange={handleStudyChange} value={customStudy}/>
+        <TextField id="filled-basic" label="Break interval" variant="standard" onChange={handleBreakChange} value={customBreak}/> 
+      </Box>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Custom
+        </Typography>
+      </CardContent>
+      <CardActions sx={{ justifyContent: 'center' }}>
+        <Button variant="contained" component={Link} to="/timetofocus" state={{ studyTime: customStudy, breakTime: customBreak }}>Begin</Button>
+      </CardActions>
+    </Card>
 
 
+    </div>
     </div>
     </div>
   );
