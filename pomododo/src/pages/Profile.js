@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from "../Firebase"
-import './pages.css'
+import { auth, getTime, getGoal } from "../Firebase"
 
 export default function Profile(){
     const[user] = useAuthState(auth)

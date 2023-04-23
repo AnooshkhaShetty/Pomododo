@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import { getFirestore, collection, doc, getDoc, setDoc} from "firebase/firestore";
 
@@ -26,7 +25,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const auth = getAuth(app)
 const db = getFirestore(app);
 const userRef = collection(db, 'Users');
@@ -35,6 +33,19 @@ const provider = new GoogleAuthProvider();
 
 function signInWithGoogle () {
   signInWithPopup(auth, provider).then((result) => {
+    localStorage.setItem("name", result.user.displayName) 
+    localStorage.setItem("photoURL", result.user.photoURL) 
+    /*
+    let user = auth.currentUser
+    const docRef = doc(db, "Users", user.uid)
+    const snapshot = getDoc(docRef)
+    if (!snapshot.exists()){
+      setDoc((docRef), {
+        userName: user.displayName,
+        totalMinutes: parseFloat(0),
+        userGoal: parseFloat(0)
+      })
+    }*/
   })
 }
 
@@ -51,7 +62,28 @@ async function addTime (amount){
     userName: user.displayName,
     totalMinutes: oldTime + amount
   })
+}
 
+async function getTime() {
+  let user = auth.currentUser;
+  let time = parseFloat(0);
+  const docRef = doc(db, "Users", user.uid)
+  const snapshot = await getDoc(docRef)
+  if (snapshot.exists()){
+    time = snapshot.data().totalMinutes
+  }
+  return time
+}
+
+async function getGoal() {
+  let user = auth.currentUser;
+  const goal = parseFloat(0);
+  const docRef = doc(db, "Users", user.uid)
+  const snapshot = await getDoc(docRef)
+  if (snapshot.exists()){
+    goal = snapshot.data().userGoal
+  }
+  return goal
 }
 
 function LogoutButton() {
@@ -75,5 +107,7 @@ export{
   auth,
   db,
   userRef,
-  addTime
+  addTime,
+  getTime,
+  getGoal
 }
