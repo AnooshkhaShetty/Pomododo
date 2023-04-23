@@ -2,6 +2,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
+import { useState } from 'react'
+import firebase from "firebase/app"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,11 +30,27 @@ const signInWithGoogle = () => {
   signInWithPopup(auth, provider).then((result) => {
     const name = result.user.displayName;
     const photoURL = result.user.photoURL;
+    console.log(result)
 
     localStorage.setItem("name", name);
     localStorage.setItem("photoURL", photoURL);
   })
 }
+
+/*
+const UserStore = () =>{
+  const [name, Setname] = useState("");
+  const [photo, Setphoto] = useState("");
+  const [userID, SetID] = useState("");
+
+  db.collection("userInfo").add(
+    {
+      Name: name,
+      Photo: photo,
+      UserID: userID
+    }
+  ).then
+}*/
 
 export{
   signInWithGoogle,
