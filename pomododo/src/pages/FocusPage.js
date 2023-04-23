@@ -10,7 +10,10 @@ function FocusPage() {
     setIsRunning(!isRunning);
   };
 
-  const { state: { studyTime, breakTime} = {} } = useLocation();
+  const { state } = useLocation();
+  const studyTime = state?.studyTime || 0;
+  const breakTime = state?.breakTime || 0;
+
 
   useEffect(() => {
     let interval;
