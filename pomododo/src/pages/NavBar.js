@@ -15,6 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import Router from './Routes';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { LogoutButton } from '../Firebase';
 
 const pages = ['Leaderboard'];
 const settings = ['Logout'];
