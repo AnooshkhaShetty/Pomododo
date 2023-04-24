@@ -1,24 +1,30 @@
-# ducks
+# Pomododo
 
-Pomododo, a study timer website
+Pomododo, a customizable study timer website
 
 Keep your study habits accountable by choosing your study and break times. Keep track of how many hours you've studied in your dashboard.
 
 Created by Ashish Basetty, Michael Jiang, Anooshkha Shetty, Felix Qu
 
+## Built With
+- React - Frontend
+- Firebase - Backend
 
-Instructions:
-1. In Terminal, enter:
+## How to Use
+Clone the repository
+``` bash
 git clone https://github.com/AnooshkhaShetty/Pomododo.git
-
-2. enter: cd ducks
-
-3. enter: npm install
-
-4. enter: cd pomododo
-
-5. enter: npm install
-
-6. enter: npm start
-
-7. Enjoy!
+```
+Change directories into the cloned repository
+``` bash
+cd pomododo
+```
+Install all the dependencies
+``` bash
+npm install
+```
+Run our app using the following command
+``` bash
+npm start
+```
+Enjoy!
