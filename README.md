@@ -1,6 +1,6 @@
 # Pomododo
 
-Pomododo, a customizable study timer website
+**Pomododo, a customizable study timer website to help you focus on any task you are working on**
 
 Keep your study habits accountable by choosing your study and break times. Keep track of how many hours you've studied in your dashboard.
 
